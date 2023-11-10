@@ -1,0 +1,14 @@
+{
+	"builds": [
+		{
+			"src": "demat_folio/wsgi.py",
+			"use": "@vercel/python"
+		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"dest": "demat_folio/wsgi.py"
+		}
+	]
+}

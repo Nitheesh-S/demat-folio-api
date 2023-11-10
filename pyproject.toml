@@ -10,6 +10,12 @@ packages = [{include = "demat_folio_api"}]
 python = "^3.11"
 django = "^4.2.5"
 djangorestframework = "^3.14.0"
+fyers-apiv3 = "^3.0.3"
+python-decouple = "^3.8"
+django-ses = "^3.5.0"
+cryptography = "^41.0.4"
+kiteconnect = "^4.2.0"
+googlefinance = "^0.7"
 
 
 [tool.poetry.group.dev.dependencies]

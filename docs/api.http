@@ -1,0 +1,53 @@
+@host = http://127.0.0.1:8000
+@authToken = {{SignInApi.response.body.token}}
+
+@fyersToken = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhcGkuZnllcnMuaW4iLCJpYXQiOjE2OTgwMDczNjUsImV4cCI6MTY5ODAyMTA0NSwibmJmIjoxNjk4MDA3MzY1LCJhdWQiOlsieDowIiwieDoxIiwieDowIl0sInN1YiI6ImFjY2Vzc190b2tlbiIsImF0X2hhc2giOiJnQUFBQUFCbE5ZbEZtQWJ3QUI1eE5fa0NxYnpBYkdVang2QlBPUTVzZG1GM0l0d1g2bEl1ZVZBVDR2d2hEVkIxbmM0c3REQUVxXzZ0ckRzVFJoN1EweDVnX2ZHam5ZZ01SVzhwamJFblFGMDZfMVMxN3RMUTk0TT0iLCJkaXNwbGF5X25hbWUiOiJOSVRIRUVTSCIsIm9tcyI6IksxIiwiaHNtX2tleSI6bnVsbCwiZnlfaWQiOiJYTjAxMzI3IiwiYXBwVHlwZSI6MTAwLCJwb2FfZmxhZyI6Ik4ifQ.mPZ9kADeQHNK60PfV4dK9paIzwqs5dXouDVYAlhlJPs
+
+# @name SignUpApi
+POST {{host}}/sign-up/
+content-type: application/json
+
+{
+	"name": "Nitheesh",
+	"password_one": "Nitheesh@123",
+	"password_two": "Nitheesh@123",
+	"email": "nitheeshmsk@gmail.com"
+}
+
+###
+# @name SignInApi
+POST {{host}}/api-token-auth/
+content-type: application/json
+
+{
+	"username": "nitheeshmsk@gmail.com",
+	"password": "Nitheesh@123"
+}
+
+###
+# @name VerifyEmailApi
+POST {{host}}/verify-email/
+content-type: application/json
+
+{
+	"token": "gAAAAABlGve34GvLI2HatzF2R46x0Hlr0EuPlL9_WLohLYRvwF-ePsOcRcNPgoMM22ob2c1OJ9WYewpOGh4o9Tjp1Wu5QIUrCKs5u5myaGixj8JRhLLHbBY="
+}
+
+###
+# @name LoginFyersApi
+GET {{host}}/login/fyers/
+content-type: application/json
+authorization: Token {{authToken}}
+
+
+###
+# @name FyersCallback
+GET {{host}}/fyers-callback/
+	?auth_code=
+content-type: application/json
+
+
+###
+# @name TestFyers
+GET {{host}}/test-fyers/
+content-type: application/json

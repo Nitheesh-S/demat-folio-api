@@ -1,0 +1,12 @@
+###
+# @name OpenfigiMapping
+POST https://api.openfigi.com/v3/mapping
+content-type: application/json
+
+[
+	{
+		"idType": "ID_ISIN",
+		"idValue": "INF204KB17I5",
+		"exchCode": "IN"
+	}
+]

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
     'portal'
 ]
 
@@ -124,3 +127,35 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'portal.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+FERNET_KEY = b'CmtQ5COVZFiuWwiSntL9BwTmaCKcc4z9B42VrNcIiCo='
+
+# fyers
+FYERS_REDIRECT_URI = "http://127.0.0.1:8000/fyers-callback"  ## redircet_uri you entered while creating APP.
+FYERS_CLIENT_ID = "8NHY1AZRDB-100"                       ## Client_id here refers to APP_ID of the created app
+FYERS_SECRET_KEY = "3IN184V588"                          ## app_secret key which you got after creating the app 
+
+# AWS
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+
+AWS_SES_REGION_NAME = 'ap-south-1'
+AWS_SES_REGION_ENDPOINT = 'email.ap-south-1.amazonaws.com'
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/django_cache",
+    }
+}
